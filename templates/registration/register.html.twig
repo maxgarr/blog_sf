@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block
+css %}
+{{ parent() }}
+<style>
+  form {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+{% endblock css %} {% block body %}
+
+<div class="container my-5">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-8 offset-md-2 px-0">
+      <h1 class="display-4 fst-italic text-center">Formulaire d'inscription</h1>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+    <h2>Vous possedez déjà un compte ?</h2>
+    <a href="/login" class="btn btn-secondary">Cliquez ici</a>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 my-5">
+      {{ form_start(registrationForm) }}
+      {{ form_row(registrationForm.pseudo) }}
+      {{ form_row(registrationForm.email) }}
+      {{
+        form_row(registrationForm.plainPassword, {
+          label: "Mot de Pass"
+        })
+      }}
+      {{ form_row(registrationForm.agreeTerms) }}
+
+      <button type="submit" class="btn btn-success">S'inscrire</button>
+      {{ form_end(registrationForm) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

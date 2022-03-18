@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %} {% block title %}Article index{% endblock %} {%
+block body %}
+<div class="container my-5">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-8 offset-md-2 px-0">
+      <h1 class="display-4 fst-italic text-center">Liste des Articles</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-2">
+      <a class="btn btn-secondary float-left" href="/blog">Retour vue utilisateur</a>
+    </div>
+    <div class="col-md-2">
+      <a class="btn btn-success" href="{{ path('app_article_new') }}">Ajouter un article</a>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Auteur</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th>Date</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+      <tr>
+        <td>{{ article.id }}</td>
+        <td>{{ article.auteur }}</td>
+        <td>{{ article.titre }}</td>
+        <td>{{ article.contenu }}</td>
+        <td>
+          {{ article.createdAt ? article.createdAt|date('d/m/Y H:i:s') : '' }}
+        </td>
+        <td>{{ article.image }}</td>
+        <td>
+          <a
+            class="btn btn-secondary mb-2"
+            href="{{ path('app_article_show', { id: article.id }) }}"
+            >></a
+          >
+          <a
+            class="btn btn-warning"
+            href="{{ path('app_article_edit', { id: article.id }) }}"
+            >Modifier</a
+          >
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="7">no records found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %} {% block title %}Article{% endblock %} {% block
+body %}
+<div class="container my-5">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-8 offset-md-2 px-0">
+      <h1 class="display-4 fst-italic text-center">
+        Article n°{{ article.id }}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Id</th>
+            <td>{{ article.id }}</td>
+          </tr>
+          <tr>
+            <th>Auteur</th>
+            <td>{{ article.auteur }}</td>
+          </tr>
+          <tr>
+            <th>Titre</th>
+            <td>{{ article.titre }}</td>
+          </tr>
+          <tr>
+            <th>Contenu</th>
+            <td>{{ article.contenu }}</td>
+          </tr>
+          <tr>
+            <th>Date de création</th>
+            <td>
+              {{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}
+            </td>
+          </tr>
+          <tr>
+            <th>Date de modification</th>
+            <td>
+              {{ article.updateAt ? article.updateAt|date('d-m-Y H:i:s') : '' }}
+            </td>
+          </tr>
+          <tr>
+            <th>Image</th>
+            <td>{{ article.image }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <a class="btn btn-secondary mx-1" href="{{ path('app_article_index') }}"
+          >Retour</a
+        >
+        <a
+          class="btn btn-warning"
+          href="{{ path('app_article_edit', { id: article.id }) }}"
+          >Modifier</a
+        >
+        <div class="text-center my-2">
+          <form
+            method="post"
+            action="{{ path('app_article_delete', { id: article.id }) }}"
+          >
+            <input
+              type="hidden"
+              name="_token"
+              value="{{ csrf_token('delete' ~ article.id) }}"
+            />
+            <button class="btn btn-danger float-left">Supprimer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

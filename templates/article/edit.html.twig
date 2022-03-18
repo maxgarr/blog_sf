@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %} {% block title %}Edit Article{% endblock %} {%
+block body %}
+<div class="container my-5">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-8 offset-md-2 px-0">
+      <h1 class="display-4 fst-italic text-center">
+        Modifier Article n°{{ article.id }}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      <div class="text-center">
+        <a
+          class="btn btn-secondary mx-1"
+          href="{{ path('app_article_index') }}"
+          >Retour</a
+        >
+        <button class="btn btn-warning">
+          {{ button_label|default('Modifier') }}
+        </button>
+      </div>
+      {{ form_end(form) }}
+
+      <div class="text-center my-2">
+        <form
+          method="post"
+          action="{{ path('app_article_delete', { id: article.id }) }}"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="{{ csrf_token('delete' ~ article.id) }}"
+          />
+          <button class="btn btn-danger float-left">Supprimer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

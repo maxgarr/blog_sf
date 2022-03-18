@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %} {% block title %}New Article{% endblock %} {%
+block body %}
+<div class="container my-5">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-8 offset-md-2 px-0">
+      <h1 class="display-4 fst-italic text-center">Ajouter un Article</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      <div class="text-center">
+        <a class="btn btn-secondary mx-1" href="{{ path('app_article_index') }}"
+          >Retour</a
+        >
+        <button class="btn btn-success">
+          {{ button_label|default('Ajouter') }}
+        </button>
+      </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %} 
+
+{% block css %}{{ parent() }}{% endblock css %}
+
+{% block js %}{{ parent() }}{% endblock js %} 
+
+{% block body %}
+  <div class="container my-5">
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+      <div class="col-md-8 offset-md-2 px-0">
+        <h1 class="display-4 fst-italic text-center">Page Contact</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <form action="" method="post">
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="name">Nom</label>
+          <input class="form-control" id="name" type="text" name="name" placeholder="Vote nom" required/>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="lastname">Prénom</label>
+          <input class="form-control" id="lastname" type="text" name="lastname" placeholder="Votre prénom" required/>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="emailAddress">E-mail</label>
+        <input class="form-control" id="emailAddress" type="email" placeholder="ex : test@test.fr" required/>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="message">Message</label>
+        <textarea class="form-control" id="message" type="text" placeholder="Votre message. . ." style="height: 10rem" required></textarea>
+      </div>
+
+      <div class="d-grid mt-5">
+        <button class="btn btn-primary btn-lg" style="width: 150px; margin: auto" type="submit">Envoyer</button>
+      </div>
+    </form>
+  </div>
+{% endblock body %}

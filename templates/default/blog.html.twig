@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %} 
+
+{% block css %}{{ parent() }}{% endblock css %}
+
+{% block js %}{{ parent() }}{% endblock js %} 
+
+{% block body %}
+  <div class="container my-5">
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+      <div class="col-md-8 offset-md-2 px-0">
+        <h1 class="display-4 fst-italic text-center">Bienvenue sur le Blog</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-2 mx-5">
+    {% for article in articles %}
+    <div class="col-md-6 my-3">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Auteur : "{{article.auteur}}"</strong>
+          <h3 class="mb-0">{{article.titre}}</h3>
+          {% if article.updateAt != null %}
+            <div class="mb-1 text-muted">Dernière modification le : {{article.updateAt|date('d/m/Y H:i:s')}}</div>
+            {% else %}
+            <div class="mb-1 text-muted">Dernière modification le : {{article.createdAt|date('d/m/Y H:i:s')}}</div>
+          {% endif %}
+          <p class="card-text mb-auto">{{article.contenu}}</p>
+          {#<a href="#" class="stretched-link">Lire la suite. . .</a>#}
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="{{article.image}}" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <title>Image</title>
+            <rect width="100%" height="100%" fill="#55595c"></rect>
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Fake</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endblock body %}
